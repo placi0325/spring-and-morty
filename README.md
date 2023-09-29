@@ -248,10 +248,8 @@ Use this space to list resources you find helpful and would like to give credit 
 [stars-url]: https://github.com/placi0325/spring-and-morty/stargazers
 [issues-shield]: https://img.shields.io/github/issues/placi0325/spring-and-morty.svg?style=for-the-badge
 [issues-url]: https://github.com/placi0325/spring-and-morty/issues
-[license-shield]: https://img.shields.io/github/license/placi0325/spring-and-morty.svg?style=for-the-badge
-[license-url]: https://github.com/placi0325/spring-and-morty/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://linkedin.com/in/lászló-péterfi/
 [product-screenshot]: images/demo.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
