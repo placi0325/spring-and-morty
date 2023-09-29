@@ -121,12 +121,12 @@ To run this project, you need to have the following:
 
 :one: Clone the repository to your local machine
    ```sh
-   git clone https://github.com/CodecoolGlobal/epg-4-java-placi0325.git
+   git clone https://github.com/placi0325/spring-and-morty.git
    ```
-:two: Create a database in PostgreSQL named for example: "preloved"
+:two: Create a database in PostgreSQL named for example: "spring_and_morty"
 
 :three: Open the project in IntelliJ, and set up these environment variables: <br>
-   * DATABASE_NAME= preloved <br>
+   * DATABASE_NAME= spring_and_morty <br>
    * DATABASE_USERNAME=_your username_<br>
    * DATABASE_PASSWORD=_your password_<br>
 
