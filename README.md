@@ -70,11 +70,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -94,14 +91,14 @@ There is user handling, adding favorites, and more to come!
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
 * [![Java][Java.img]][Java-url]
 * [![Spring][Spring.img]][Spring-url]
+* [![PostgreSQL][PostgreSQL.img]][PostgreSQL-url]
+  
 * [![JavaScript][JavaScript.img]][JavaScript-url]
 * [![React][React.img]][React-url]
 * [![Docker][Docker.img]][Docker-url]
-* [![PostgreSQL][PostgreSQL.img]][PostgreSQL-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -110,34 +107,45 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To run this project, you need to have the following:
 
-### Prerequisites
+:one: Java <br>
+:two: Apache Maven  <br>
+:three: IntelliJ <br>
+:four: PostgreSQL <br>
+:five: Docker (Optional) <br>
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+<div id="installation"></div>
+
+### Installation :floppy_disk:	
+
+:one: Clone the repository to your local machine
+   ```sh
+   git clone https://github.com/CodecoolGlobal/epg-4-java-placi0325.git
+   ```
+:two: Create a database in PostgreSQL named for example: "preloved"
+
+:three: Open the project in IntelliJ, and set up these environment variables: <br>
+   * DATABASE_NAME= preloved <br>
+   * DATABASE_USERNAME=_your username_<br>
+   * DATABASE_PASSWORD=_your password_<br>
+
+:four: To start the frontend separately (optional), you have to go into the frontend folder and run the following command in the terminal:
   ```sh
-  npm install npm@latest -g
+      npm start
+   ```
+
+:five: To start the backend, run the application by the "Run" button in the top right corner or with Shift + F10 shortcut
+
+:six: For reaching the website through the backend, use:
+  ```sh
+      http://localhost:8080/
   ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+:seven: If the frontend is running, the website will be available on
+  ```sh
+      http://localhost:3000/
+  ```
+<br>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -146,29 +154,9 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+Anyone can register to the page, after logging in there are some features available: browsing the locations or the characters.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTRIBUTING -->
@@ -187,41 +175,10 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+:envelope:	**László** - peterfi.laci.0325@gmail.com  &nbsp;&nbsp;&nbsp;&nbsp; :point_right: &nbsp;&nbsp;&nbsp;&nbsp; [![László's LinkedIn][linkedin-shield]][LinkedIn - László]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
