@@ -178,7 +178,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-:envelope:	**László** - peterfi.laci.0325@gmail.com  &nbsp;&nbsp;&nbsp;&nbsp; :point_right: &nbsp;&nbsp;&nbsp;&nbsp; [![László's LinkedIn][linkedin-shield]][LinkedIn - László]
+:envelope:	**László** - peterfi.laci.0325@gmail.com  &nbsp;&nbsp;&nbsp;&nbsp; :point_right: &nbsp;&nbsp;&nbsp;&nbsp; [![László's LinkedIn][linkedin-shield]][linkedin-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
