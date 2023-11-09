@@ -1,6 +1,6 @@
-package com.codecool.springbackend.dao;
+package com.codecool.springbackend.repository;
 
-import com.codecool.springbackend.dao.model.User;
+import com.codecool.springbackend.repository.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

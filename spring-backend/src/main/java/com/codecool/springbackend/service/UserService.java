@@ -1,9 +1,9 @@
 package com.codecool.springbackend.service;
 
 import com.codecool.springbackend.controller.dto.NewUserDTO;
-import com.codecool.springbackend.dao.Role;
-import com.codecool.springbackend.dao.UserRepository;
-import com.codecool.springbackend.dao.model.User;
+import com.codecool.springbackend.repository.Role;
+import com.codecool.springbackend.repository.UserRepository;
+import com.codecool.springbackend.repository.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class UserService {
 
     public void addNewUser(NewUserDTO newUserDTO){
         User newUser = User.builder()
-                .email(newUserDTO.email())
+                .email(newUserDTO.username())
                 .password(passwordEncoder.encode(newUserDTO.password()))
                 .role(Role.USER)
                 .build();

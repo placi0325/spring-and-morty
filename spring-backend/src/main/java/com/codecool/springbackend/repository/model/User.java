@@ -1,6 +1,6 @@
-package com.codecool.springbackend.dao.model;
+package com.codecool.springbackend.repository.model;
 
-import com.codecool.springbackend.dao.Role;
+import com.codecool.springbackend.repository.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

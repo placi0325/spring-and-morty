@@ -1,7 +1,7 @@
 package com.codecool.springbackend.controller;
 
 import com.codecool.springbackend.controller.dto.NewUserDTO;
-import com.codecool.springbackend.dao.model.User;
+import com.codecool.springbackend.repository.model.User;
 import com.codecool.springbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<?> addNewUser(@RequestBody NewUserDTO userDTO){
-        String email = userDTO.email();
+        String email = userDTO.username();
         String password = userDTO.password();
         if(email.equals("") || password.equals("")){
             return ResponseEntity.badRequest().build();

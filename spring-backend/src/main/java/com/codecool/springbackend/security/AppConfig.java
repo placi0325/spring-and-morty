@@ -1,6 +1,6 @@
 package com.codecool.springbackend.security;
 
-import com.codecool.springbackend.dao.UserRepository;
+import com.codecool.springbackend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
