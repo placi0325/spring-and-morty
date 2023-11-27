@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,8 +21,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(Integer id){
-         return userRepository.getReferenceById(id);
+    public Optional<User> getUserById(Integer id){
+         return userRepository.findById(id);
     }
 
     public void addNewUser(NewUserDTO newUserDTO){
