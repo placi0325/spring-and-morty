@@ -27,10 +27,16 @@ public class UserService {
 
     public void addNewUser(NewUserDTO newUserDTO){
         User newUser = User.builder()
-                .email(newUserDTO.username())
+                .email(newUserDTO.email())
                 .password(passwordEncoder.encode(newUserDTO.password()))
                 .role(Role.USER)
                 .build();
         userRepository.save(newUser);
+    }
+
+    public void changePassword(Integer id, String newPassword){
+        Optional<User> user = getUserById(id);
+        user.get().setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user.get());
     }
 }

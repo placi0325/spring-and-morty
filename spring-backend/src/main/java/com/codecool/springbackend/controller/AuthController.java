@@ -26,7 +26,7 @@ public class AuthController {
     public ResponseEntity<?> login(@RequestBody NewUserDTO userDTO) {
         try {
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(userDTO.username(), userDTO.password()));
+                    new UsernamePasswordAuthenticationToken(userDTO.email(), userDTO.password()));
             String token = tokenService.generateToken(authentication);
             return ResponseEntity.ok().header("Authorization", "Bearer " + token).build();
         } catch (UsernameNotFoundException exception) {
