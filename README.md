@@ -207,7 +207,7 @@ Don't forget to give the project a star! Thanks again!
 [Java.img]: https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white
 [Java-url]: https://www.java.com/en/
 
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular.img]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
 
 [TypeScript.img]:  https://img.shields.io/badge/TypeScript-007AC?style=for-the-badge&logo=typescript&logoColor=white
