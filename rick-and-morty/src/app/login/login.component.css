@@ -1,0 +1,78 @@
+.loginForm {
+  background-color: #12b0c9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  min-width: 40vw;
+  max-width: 50vw; /* Set a maximum width for better readability on larger screens */
+  margin: 0 auto; /* Center the form horizontally */
+  position: absolute;
+  top: 20vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.loginForm h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.loginForm label {
+  display: block;
+  font-size: 16px;
+  margin: 10px 0;
+  color: black;
+}
+
+.loginForm input {
+  width: 60%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 2px solid #d2e054;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #12b0c9;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.loginForm .buttonContainer {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.loginForm .button {
+  flex: 1;
+  max-width: 48%; /* Limit button width for better spacing on smaller screens */
+  background-color: black;
+  color: #12b0c9;
+  border: 2px solid #d2e054;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px; /* Add margin between buttons */
+}
+
+.loginForm .button:hover {
+  background-color: #12b0c9;
+  color: black;
+}
+
+.loginForm .button:active {
+  transform: scale(0.95);
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 600px) {
+  .loginForm {
+    max-width: 100%;
+  }
+
+  .loginForm .button {
+    max-width: 100%;
+  }
+}

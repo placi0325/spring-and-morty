@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="search">
+    Search by name: <input [(ngModel)]="name" (input)="filterCharactersByName(name)">
+    Status: <select [(ngModel)]="status" (change)="filterCharactersByStatus(status)">
+        <option value=""></option>
+        <option value="Alive">Alive</option>
+        <option value="Dead">Dead</option>
+        <option value="Unknown">Unknown</option>
+    </select>
+</div>
+<div class="characterList">
+    @for (character of characters; track character.id) {
+    <div className="characterListItem">
+        <a [routerLink]="'/character/' + character.id">
+            <img class="characterImage" [src]="character.image" [alt]="character.name">
+            <div class="characterName">{{ character.name }}</div>
+        </a>
+    </div>
+    } @empty {
+        <div>No characters found.</div>
+    }
+    <app-page-switcher [max]="maxPage" [pageNumber]="characterPage" (pageChanged)="setPage($event)"></app-page-switcher>
+</div>

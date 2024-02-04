@@ -1,0 +1,48 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: grid;
+  align-items:flex-start;
+}
+
+.header-buttons {
+  grid-column: 2;
+  display: flex;
+  justify-content:flex-end;
+  align-items: flex-start;
+  margin-top: 2vh;
+  margin-right: 1vh;
+}
+
+.header-button {
+  font-size: xx-large;
+  background-color: black;
+  border-radius: 1em;
+  border-color: #d2e054;
+  color: #12b0c9;
+  border-width: 0.15em;
+  cursor: pointer;
+  padding: 1vh 1.5vw;
+}
+
+.header-button:hover {
+  color: black;
+  background-color: #12b0c9;
+}
+
+.header-logo {
+  grid-column: 1;
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px; /* Increase the maximum width of the logo */
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.hidden-buttons {
+  position: absolute;
+  display: grid;
+  top: 10vh;
+}

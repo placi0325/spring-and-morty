@@ -1,0 +1,9 @@
+<div class="pageSwitcher">
+    <button (click)="onPageChange(pageNumber - 1);">
+        &lt;
+    </button>
+    <div>Page {{ pageNumber }}/{{max}}</div>
+    <button (click)="onPageChange(pageNumber + 1);">
+        &gt;
+    </button>
+</div>

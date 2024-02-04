@@ -1,0 +1,12 @@
+<app-header></app-header>
+<div class="episodeList">
+    @for (episode of episodes; track episode.id) {
+        <div className="episodeListItem">
+            <a [routerLink]="'/episodes/' + episode.id">
+                <div class="episodeName">{{ episode.episode }}</div>
+                <div class="episodeName">{{ episode.name }}</div>
+            </a>
+        </div>
+    }
+    <app-page-switcher [max]="maxPage" [pageNumber]="episodePage" (pageChanged)="setPage($event)"></app-page-switcher>
+</div>

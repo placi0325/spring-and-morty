@@ -1,0 +1,16 @@
+<app-header></app-header>
+<div class="character">
+    <img class="characterImage" [src]="character.image" [alt]="character.name" />
+    <div>Name</div>
+    <div>{{character.name}}</div>
+    <div>Status</div>
+    <div>{{character.status}}</div>
+    <div>Species</div>
+    <div>{{character.species}}</div>
+    <div>Gender</div>
+    <div>{{character.gender}}</div>
+    <div>Origin:</div>
+    <div>{{character.origin.name}}</div>
+    <div>Number of appearances: </div>
+    <div>{{character.episode.length}}</div>
+</div>

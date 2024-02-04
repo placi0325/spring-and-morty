@@ -1,0 +1,24 @@
+.location {
+    display: grid;
+    padding-top: 20vh;
+    justify-content: center;
+  }
+  
+  .locationImage {
+    border-radius: 50%; /* Make the image circular */
+    max-height: 40vh;
+  }
+  
+  
+  .location div {
+      margin-bottom: 8px;
+  }
+  
+  /* Additional styling for specific elements if needed */
+  .location div:nth-child(even) {
+      color: #333; /* Change text color for odd-numbered divs */
+  }
+  
+  .location div:nth-child(odd) {
+      font-weight: bold; /* Make text bold for even-numbered divs */
+  }

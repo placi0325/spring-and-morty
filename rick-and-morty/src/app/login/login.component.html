@@ -1,0 +1,22 @@
+<app-header></app-header>
+<form class="loginForm" (ngSubmit)="onSubmit()">
+    <h1>Log in</h1>
+    <div>
+        <label htmlFor="email">Email:</label>
+        <input type="text" class="form-control" id="email" name="email" required [(ngModel)]="email" />
+    </div>
+    <div>
+        <label htmlFor="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" 
+                required 
+                [(ngModel)]="password" />
+    </div>
+    <div class="buttonContainer">
+        <button class="button" type="submit" >
+            Login
+        </button>
+        <button class="button" type="button" routerLink="/">
+            Cancel
+        </button>
+    </div>
+</form>

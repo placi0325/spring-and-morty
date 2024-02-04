@@ -1,0 +1,45 @@
+.characterList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+  margin: auto;
+  padding: 30px 20px 100px;
+}
+
+a {
+  text-decoration: none; /* no underline */
+}
+
+a:hover div {
+  color: #12b0c9;
+}
+
+.characterListItem {
+  color: #12b0c9;
+  text-align: center;
+}
+
+.characterImage {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 5px solid black;
+  transition: border-color 0.3s ease;
+}
+
+.characterImage:hover {
+  border-color: #12b0c9;
+}
+
+.characterName {
+  color: #000;
+  font-size:x-large;
+}
+
+.search {
+   padding-top: 20vh;
+   padding-left: 5vw;
+   font-size: xx-large;
+}

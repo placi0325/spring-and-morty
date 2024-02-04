@@ -1,0 +1,29 @@
+.pageSwitcher {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 300px; /* Increased the width for better alignment */
+  color: #12b0c9;
+  font-size: xx-large;
+  background-color: rgb(36, 36, 36);
+  padding: 1.5vh; /* Combined padding for top and bottom */
+  border-radius: 10px;
+}
+
+.pageSwitcher button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #12b0c9;
+  font-size: xx-large;
+}
+
+.pageSwitcher div {
+  white-space: nowrap; /* Prevents text from wrapping to the next line */
+  flex-grow: 1; /* Allows the middle div to take up remaining space */
+  text-align: center;
+}

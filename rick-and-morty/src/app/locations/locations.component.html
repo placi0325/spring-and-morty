@@ -1,0 +1,27 @@
+<app-header></app-header>
+<div class="search">
+    Search by name <input [(ngModel)]="name" (input)="filterLocationsByName(name)">
+    Dimension <select id="dimensionFilter" [(ngModel)]="dimension" (change)="(filterLocationsByDimension(dimension))">
+        @for (dimension of dimensions; track $index) {
+        <option [value]="dimension">{{ dimension }}</option>
+        }
+    </select>
+    Type <select id="typeFilter" [(ngModel)]="type" (change)="(filterLocationsByType(type))">
+        @for (type of types; track $index) {
+        <option [value]="type">{{ type }}</option>
+        }
+    </select>
+</div>
+<div class="locationList">
+    @for (location of locations; track location.id) {
+    <div className="locationListItem">
+        <a [routerLink]="'/location/' + location.id">
+            <img class="locationImage" [src]="location.image" [alt]="location.name">
+            <div class="locationName">{{ location.name }}</div>
+        </a>
+    </div>
+    } @empty {
+    <div>No locations found.</div>
+    }
+    <app-page-switcher [max]="maxPage" [pageNumber]="locationPage" (pageChanged)="setPage($event)"></app-page-switcher>
+</div>

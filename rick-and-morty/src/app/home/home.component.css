@@ -1,0 +1,32 @@
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 50%; /* Adjust as needed */
+  margin: 0.8vh auto; /* Relative to viewport height */
+}
+
+.home {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.home > p {
+  color: #12b0c9;
+  font-size: 2vw; /* Relative to viewport width */
+  max-width: 80%; /* Relative to viewport width */
+  margin: 1vh auto; /* Relative to viewport height */
+  background-color: black;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border-radius: 1em;
+  border-color: #d2e054;
+  color: #12b0c9;
+  border-width: 1em;
+}
+
+.logo {
+  max-width: 47%;
+}

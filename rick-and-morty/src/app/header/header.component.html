@@ -1,0 +1,19 @@
+<div class="header">
+  <img class="header-logo" src="assets/textlogo.png" alt="textlogo" routerLink="/">
+  <div class="header-buttons">
+    <button class="header-button" routerLink="/">Home</button>
+    @if (!isUserLoggedIn) {
+    <button class="header-button" routerLink="/login">Login</button>
+    }
+    @if (isUserLoggedIn) {
+    <button class="header-button" (click)="logOut()">Logout</button>
+    }
+    <button class="header-button" (click)="toggleButtons()">Browse</button>
+    @if (showHiddenButtons){
+    <div class="hidden-buttons">
+      <button class="header-button" routerLink="/characters">Characters</button>
+      <button class="header-button" routerLink="/locations">Locations</button>
+      <button class="header-button" routerLink="/episodes">Episodes</button>
+    </div>
+    }
+  </div>
