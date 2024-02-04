@@ -37,7 +37,7 @@
   <h3 align="center">Spring and Morty</h3>
 
   <p align="center">
-    A fullstack project for browsing Rick and Morty related material with users.
+    A fullstack project for browsing Rick and Morty related material with user management.
     <br />
     <a href="https://github.com/placi0325/spring-and-morty"><strong>Explore the docs »</strong></a>
     <br />
@@ -82,7 +82,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-This is a full stack project which has Java Spring Boot as backend, and React for frontend.
+This is a full stack project which has Java Spring Boot as backend, and Angular for frontend.
 There is user handling, adding favorites, and more to come!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -95,9 +95,8 @@ There is user handling, adding favorites, and more to come!
 * [![Spring][Spring.img]][Spring-url]
 * [![PostgreSQL][PostgreSQL.img]][PostgreSQL-url]
   
-* [![JavaScript][JavaScript.img]][JavaScript-url]
-* [![React][React.img]][React-url]
-* [![Docker][Docker.img]][Docker-url]
+* [![TypeScript][TypeScript.img]][TypeScript-url]
+* [![Angular][Angular.img]][Angular-url]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -113,7 +112,6 @@ To run this project, you need to have the following:
 :two: Apache Maven  <br>
 :three: IntelliJ <br>
 :four: PostgreSQL <br>
-:five: Docker (Optional) <br>
 
 <div id="installation"></div>
 
@@ -129,10 +127,14 @@ To run this project, you need to have the following:
    * DATABASE_NAME= spring_and_morty <br>
    * DATABASE_USERNAME=_your username_<br>
    * DATABASE_PASSWORD=_your password_<br>
+   * JWT_KEY=_your key_<br>
 
-:four: To start the frontend separately (optional), you have to go into the frontend folder and run the following command in the terminal:
+JWT (JSON Web Token) key is in HS256 format, which means
+example key could be: Key-Must-Be-at-least-32-bytes-in-length!
+
+:four: To start the frontend separately (optional), you have to go into the rick-and-morty folder and run the following command in the terminal:
   ```sh
-      npm start
+      ng serve --open
    ```
 
 :five: To start the backend, run the application by the "Run" button in the top right corner or with Shift + F10 shortcut
@@ -143,7 +145,7 @@ To run this project, you need to have the following:
   ```
 :seven: If the frontend is running, the website will be available on
   ```sh
-      http://localhost:3000/
+      http://localhost:4200/
   ```
 <br>
 
@@ -154,7 +156,8 @@ To run this project, you need to have the following:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Anyone can register to the page, after logging in there are some features available: browsing the locations or the characters.
+You can browse the locations, the characters, or the episodes of the show.
+Anyone can register to the page, after logging in there are some future features available: adding favorite of each type of browseable content.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -197,15 +200,23 @@ Don't forget to give the project a star! Thanks again!
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/lászló-péterfi/
 [product-screenshot]: images/demo.png
-[JavaScript.img]: 	https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
-[JavaScript-url]: https://www.javascript.com/
+
 [Spring.img]: https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white
 [Spring-url]: https://spring.io/
-[React.img]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://react.dev/
-[Docker.img]: https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white
-[Docker-url]: https://www.docker.com/
-[PostgreSQL.img]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
-[PostgreSQL-url]: https://www.postgresql.org/
+
 [Java.img]: https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white
 [Java-url]: https://www.java.com/en/
+
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+
+[TypeScript.img]:  https://img.shields.io/badge/TypeScript-007AC?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]:  https://www.typescriptlang.org/ 
+
+[PostgreSQL.img]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
+[PostgreSQL-url]: https://www.postgresql.org/
+
+[Docker.img]: https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white
+[Docker-url]: https://www.docker.com/
+
+
