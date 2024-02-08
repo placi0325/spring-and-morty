@@ -3,9 +3,11 @@ package com.codecool.springbackend.controller;
 import com.codecool.springbackend.controller.dto.*;
 import com.codecool.springbackend.repository.Role;
 import com.codecool.springbackend.repository.model.User;
+import com.codecool.springbackend.security.JwtService;
 import com.codecool.springbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -21,6 +24,7 @@ import java.util.Optional;
 public class UserController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
@@ -29,8 +33,8 @@ public class UserController {
     }
 
     @GetMapping("/five-favorite-characters")
-    public ResponseEntity<List<Integer>> getFiveFavoriteCharacters() {
-        List<Integer> favoriteCharacters = userService.getFiveFavoriteCharacters();
+    public ResponseEntity<List<Map.Entry<Integer, Long>>> getFiveFavoriteCharacters() {
+        List<Map.Entry<Integer, Long>> favoriteCharacters = userService.getFiveFavoriteCharacters();
         return ResponseEntity.ok(favoriteCharacters);
     }
 
@@ -64,18 +68,28 @@ public class UserController {
         try {
             userService.addNewUser(userDTO);
         } catch (DataIntegrityViolationException exception){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
+            //if user already exists by email
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("User with email already exists.");
         }
         return ResponseEntity.ok().body("User added successfully.");
     }
 
-    @PatchMapping("/{id}/password")
-    public ResponseEntity<?> changePassword(@PathVariable Integer id, @RequestBody NewPasswordDTO newPasswordDTO) {
-        Optional<User> user = userService.getUserById(id);
-        if (user.isEmpty()) {
-            return new ResponseEntity<>("User not found with ID: " + id, HttpStatus.NOT_FOUND);
+    @PatchMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestHeader HttpHeaders headers, @RequestBody NewPasswordDTO newPasswordDTO) {
+
+        String token = headers.getFirst("Authorization");
+        if (token == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        if (passwordEncoder.matches(newPasswordDTO.oldPassword(), user.get().getPassword())) {
+
+        String email = jwtService.extractUsername(token);
+        Optional<User> user = userService.getUserByEmail(email);
+
+        if (user.isEmpty()) {
+            return new ResponseEntity<>("User not found with email: " + email, HttpStatus.NOT_FOUND);
+        }
+
+        if ( passwordEncoder.matches( newPasswordDTO.oldPassword(), user.get().getPassword())) {
             userService.changePassword(user.get().getId(), newPasswordDTO.newPassword());
             return ResponseEntity.ok().body("Password changed successfully.");
         } else {
@@ -83,22 +97,41 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/{id}/email")
-    public ResponseEntity<?> updateEmail(@PathVariable Integer id, @RequestBody UserEmailDTO userEmailDTO) {
-        boolean updated = userService.updateEmail(id, userEmailDTO.newEmail());
+    @PatchMapping("/change-email")
+    public ResponseEntity<?> changeEmail(@RequestHeader HttpHeaders headers, @RequestBody UserEmailDTO userEmailDTO) {
+        String token = headers.getFirst("Authorization");
+        if (token == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        String email = jwtService.extractUsername(token);
+        Optional<User> user = userService.getUserByEmail(email);
+
+        if (user.isEmpty()) {
+            return new ResponseEntity<>("User not found with email: " + email, HttpStatus.NOT_FOUND);
+        }
+
+        boolean updated = userService.updateEmail(user.get().getId(), userEmailDTO.newEmail());
+
         if (updated) {
             return ResponseEntity.ok().body("Email updated successfully.");
         } else {
-            return new ResponseEntity<>("User not found with ID: " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Failed to update email.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PatchMapping("/{id}/role")
-    public ResponseEntity<?> updateRole(@PathVariable Integer id, @RequestBody UserRoleDTO userRoleDTO) {
-        Optional<User> user = userService.getUserById(id);
+    @PatchMapping("/change-role")
+    public ResponseEntity<?> changeRole(@RequestHeader HttpHeaders headers, @RequestBody UserRoleDTO userRoleDTO) {
+        String token = headers.getFirst("Authorization");
+        if (token == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        String email = jwtService.extractUsername(token);
+        Optional<User> user = userService.getUserByEmail(email);
 
         if (user.isEmpty()) {
-            return new ResponseEntity<>("User not found with ID: " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("User not found with email: " + email, HttpStatus.NOT_FOUND);
         }
 
         // Check if the user submitting the request is an admin
@@ -110,47 +143,96 @@ public class UserController {
         if (updated) {
             return ResponseEntity.ok().body("Role updated successfully.");
         } else {
-            return new ResponseEntity<>("User not found with ID: " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Failed to update role.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PatchMapping("/{id}/addLocation")
-    public ResponseEntity<?> addLocationId(@PathVariable Integer id, @RequestBody UserLocationId userLocationId) {
-        boolean added = userService.addLocationId(id, Integer.valueOf(userLocationId.locationId()));
+    @PatchMapping("/add-favorite-location")
+    public ResponseEntity<?> addLocation(@RequestHeader HttpHeaders headers,  @RequestBody UserLocationId userLocationId) {
+        String token = headers.getFirst("Authorization");
+        if (token == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        String email = jwtService.extractUsername(token);
+        Optional<User> user = userService.getUserByEmail(email);
+
+        if (user.isEmpty()) {
+            return new ResponseEntity<>("User not found with email: " + email, HttpStatus.NOT_FOUND);
+        }
+
+        boolean added = userService.addLocationId(user.get().getId(), Integer.valueOf(userLocationId.locationId()));
         if (added) {
             return ResponseEntity.ok().body("Location ID added successfully.");
         } else {
-            return new ResponseEntity<>("User not found with ID: " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Failed to add location ID.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @DeleteMapping("/{id}/removeLocation")
-    public ResponseEntity<?> removeLocationId(@PathVariable Integer id, @RequestBody UserLocationId userLocationId) {
-        boolean removed = userService.removeLocationId(id, Integer.valueOf(userLocationId.locationId()));
+    @DeleteMapping("/remove-favorite-location")
+    public ResponseEntity<?> removeLocation(@RequestHeader HttpHeaders headers, @RequestBody UserLocationId userLocationId) {
+        String token = headers.getFirst("Authorization");
+        if (token == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        String email = jwtService.extractUsername(token);
+        Optional<User> user = userService.getUserByEmail(email);
+
+        if (user.isEmpty()) {
+            return new ResponseEntity<>("User not found with email: " + email, HttpStatus.NOT_FOUND);
+        }
+
+        boolean removed = userService.removeLocationId(user.get().getId(), Integer.valueOf(userLocationId.locationId()));
         if (removed) {
             return ResponseEntity.ok().body("Location ID removed successfully.");
         } else {
-            return new ResponseEntity<>("User not found with ID: " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Failed to remove location ID.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PatchMapping("/{id}/addCharacter")
-    public ResponseEntity<?> addCharacterId(@PathVariable Integer id, @RequestBody UserCharacterId userCharacterId) {
-        boolean added = userService.addCharacterId(id, Integer.valueOf(userCharacterId.characterId()));
+    @PatchMapping("/add-favorite-character")
+    public ResponseEntity<?> addCharacter(@RequestHeader HttpHeaders headers, @RequestBody UserCharacterId userCharacterId) {
+        String token = headers.getFirst("Authorization");
+        System.out.println(token);
+        if (token == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        String email = jwtService.extractUsername(token);
+        Optional<User> user = userService.getUserByEmail(email);
+
+        if (user.isEmpty()) {
+            return new ResponseEntity<>("User not found with email: " + email, HttpStatus.NOT_FOUND);
+        }
+
+        boolean added = userService.addCharacterId(user.get().getId(), Integer.valueOf(userCharacterId.characterId()));
         if (added) {
             return ResponseEntity.ok().body("Character ID added successfully.");
         } else {
-            return new ResponseEntity<>("User not found with ID: " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Failed to add character ID.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @DeleteMapping("/{id}/removeCharacter")
-    public ResponseEntity<?> removeCharacterId(@PathVariable Integer id, @RequestBody UserCharacterId userCharacterId) {
-        boolean removed = userService.removeCharacterId(id, Integer.valueOf(userCharacterId.characterId()));
+    @PatchMapping("/remove-favorite-character")
+    public ResponseEntity<?> removeCharacter(@RequestHeader HttpHeaders headers, @RequestBody UserCharacterId userCharacterId) {
+        String token = headers.getFirst("Authorization");
+        if (token == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        String email = jwtService.extractUsername(token);
+        Optional<User> user = userService.getUserByEmail(email);
+
+        if (user.isEmpty()) {
+            return new ResponseEntity<>("User not found with email: " + email, HttpStatus.NOT_FOUND);
+        }
+
+        boolean removed = userService.removeCharacterId(user.get().getId(), Integer.valueOf(userCharacterId.characterId()));
         if (removed) {
             return ResponseEntity.ok().body("Character ID removed successfully.");
         } else {
-            return new ResponseEntity<>("User not found with ID: " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Failed to remove character ID.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

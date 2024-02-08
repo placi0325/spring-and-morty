@@ -20,23 +20,11 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public List<Integer> getFiveFavoriteCharacters() {
-        List<User> allUsers = userRepository.findAll();
+    public List<Map.Entry<Integer, Long>> getFiveFavoriteCharacters() {
+        List<Map<String, Object>> topCharactersWithLikes = userRepository.findTopFiveFavoriteCharactersWithLikes();
 
-        // Count the occurrences of each character ID across all users
-        Map<Integer, Long> characterLikesCount = allUsers.stream()
-                .flatMap(user -> user.getCharacterIds().stream())
-                .collect(Collectors.groupingBy(characterId -> characterId, Collectors.counting()));
-
-        // Sort the character IDs by the number of likes (descending order)
-        List<Integer> sortedCharacterIds = characterLikesCount.entrySet().stream()
-                .sorted((entry1, entry2) -> Long.compare(entry2.getValue(), entry1.getValue()))
-                .map(Map.Entry::getKey)
-                .toList();
-
-        // Extract the first five character IDs
-        return sortedCharacterIds.stream()
-                .limit(5)
+        return topCharactersWithLikes.stream()
+                .map(entry -> Map.entry((Integer) entry.get("character_id"), (Long) entry.get("like_count")))
                 .collect(Collectors.toList());
     }
 
